@@ -1,0 +1,25 @@
+SELECT * FROM users;
+INSERT INTO `mydb`.`users`
+(`first_name`, `last_name`, `email`, `created_at`, `updated_at`)
+VALUES
+('Maria', 'Barreto', 'jazminbarreto19@gmail.com', NOW(), NOW()),
+('Juan', 'Perez', 'juanpe@gmail.com', NOW(), NOW()),
+('Ana', 'Gomez', 'ana@outlook.com', NOW(), NOW());
+SELECT * FROM users WHERE email IS NOT NULL LIMIT 1;
+SELECT * FROM users ORDER BY id DESC LIMIT 1;
+UPDATE users SET last_name = 'Panqueques' WHERE id = 3;
+SELECT * FROM users;
+DELETE FROM users WHERE id = 2;
+SELECT * FROM users ORDER BY first_name;
+SELECT * FROM users ORDER BY first_name DESC;
+-- para borrar valores repetidos
+DELETE u1
+FROM users u1
+JOIN (
+    SELECT first_name, last_name, email, MIN(id) as min_id
+    FROM users
+    GROUP BY first_name, last_name, email
+    HAVING COUNT(*) > 1
+) u2 ON u1.first_name = u2.first_name AND u1.last_name = u2.last_name AND u1.email = u2.email
+WHERE u1.id <> u2.min_id;
+SELECT * FROM users;
