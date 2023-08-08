@@ -1,0 +1,6 @@
+SELECT * FROM users;
+UPDATE users SET first_name = 'Allen' , last_name = 'Barreto' WHERE id = 3;
+INSERT INTO users (first_name, last_name) VALUES ('Maria Jazmin', 'Barreto Pereira');
+SET SQL_SAFE_UPDATES = 0; 
+DELETE FROM users WHERE id = 10;
+DELETE FROM users WHERE id >= 11 AND id <= 16;
